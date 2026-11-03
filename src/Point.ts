@@ -8,7 +8,7 @@ export default class Point implements Geometry {
     this.coordinate = coordinate ? coordinate : [];
   }
 
-  getType(): string{
+  getType(): string {
     return "Point";
   }
 
@@ -26,6 +26,14 @@ export default class Point implements Geometry {
 
   isEmpty(): boolean {
     return this.coordinate.length === 0;
+  }
+
+  translate(dx: number, dy: number){
+    if (this.isEmpty()) {
+      return;
+    }
+    this.coordinate[0] = this.x() + dx;
+    this.coordinate[1] = this.y() + dy;
   }
 
 }

@@ -30,4 +30,21 @@ describe("test LineString", () => {
         expect(g.getPointN(0)).to.equal(a);
         expect(g.getPointN(1)).to.equal(b);
     });
-});
+    describe("LineString", () => {
+        it("translate points", () => {
+            const ln = new LineString([
+                new Point([0.0, 0.0]),
+                new Point([1.0, 1.0])
+            ]);
+            ln.translate(2.0, 3.0);
+            expect(ln.getPointN(0).getCoordinate()).to.deep.equal([2.0, 3.0]);
+            expect(ln.getPointN(1).getCoordinate()).to.deep.equal([3.0, 4.0]);
+        });
+
+        it("test LineString vide", () => {
+            const ln = new LineString();
+            ln.translate(1.0, 1.0);
+            expect(ln.isEmpty()).to.be.true;
+        });
+    })
+})
