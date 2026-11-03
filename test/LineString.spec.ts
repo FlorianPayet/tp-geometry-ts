@@ -47,4 +47,26 @@ describe("test LineString", () => {
             expect(ln.isEmpty()).to.be.true;
         });
     })
+    describe("LineString", () => {
+        it("clone les points en profondeur", () => {
+            const p1 = new Point([0.0, 0.0]);
+            const p2 = new Point([1.0, 1.0]);
+            const ln = new LineString([p1, p2]);
+            const a = ln.clone();
+
+            expect(a).to.not.equal(ln);
+            expect(a.getNumPoints()).to.equal(2);
+            expect(a.getPointN(0)).to.not.equal(p1);
+            expect(a.getPointN(0).getCoordinate()).to.deep.equal([0.0, 0.0]);
+            expect(a.getPointN(1).getCoordinate()).to.deep.equal([1.0, 1.0]);
+        });
+
+        it("est différente de l'original", () => {
+            const ln = new LineString([new Point([0.0, 0.0])]);
+            const a = ln.clone();
+            a.translate(5.0, 5.0);
+            expect(ln.getPointN(0).getCoordinate()).to.deep.equal([0.0, 0.0]);
+            expect(a.getPointN(0).getCoordinate()).to.deep.equal([5.0, 5.0]);
+        });
+    })
 })

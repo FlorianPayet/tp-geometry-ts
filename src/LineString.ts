@@ -29,4 +29,7 @@ export default class LineString implements Geometry {
             point.translate(dx, dy);
         }
     }
+    clone(): LineString {
+        return new LineString(this.points.map(point => point.clone()));
+    }
 }
