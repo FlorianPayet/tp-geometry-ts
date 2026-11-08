@@ -1,4 +1,5 @@
 import Envelope from "./Envelope";
+import GeometryVisitor from "./GeometryVisitor";
 
 export default interface Geometry {
     getType(): string;
@@ -10,4 +11,6 @@ export default interface Geometry {
     clone(): Geometry;
 
     getEnvelope(): Envelope;
+
+    accept(visitor: GeometryVisitor);
 }
