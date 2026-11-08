@@ -39,6 +39,15 @@ describe("test Point", () => {
         expect(c).to.not.equal(p);
         expect(c.getCoordinate()).to.deep.equal([2.0, 3.0]);
     });
+
+    it("test getEnvelope", () => {
+        const p = new Point([3.0, 4.0]);
+        expect(p.getEnvelope().toString()).to.equal("[3, 4, 3, 4]");
+    });
+    it("test getEnvelope sur un point vide", () => {
+        const p = new Point();
+        expect(p.getEnvelope().isEmpty()).to.be.true;
+    });
 })
 
 
